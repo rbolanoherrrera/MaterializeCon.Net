@@ -1,0 +1,101 @@
+@model WebUI.Models.TercerosModel
+
+@{
+    ViewBag.Title = "Register con Materialize";
+}
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaterialize.cshtml";
+}
+
+<h4>Información de Terceros</h4>
+<br />
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <div class="col s12 m3">
+            @Html.LabelFor(m => m.TipoDocumento, new { @class = "" })
+            @Html.TextBoxFor(m => m.TipoDocumento)
+            @Html.ValidationMessageFor(m => m.TipoDocumento, "", new { @class = "red-text" })
+        </div>
+        <div class="col s12 m3">
+            @Html.LabelFor(m => m.Documento)
+            @Html.PasswordFor(m => m.Documento)
+            @Html.ValidationMessageFor(m => m.Documento, "", new { @class="red-text"})
+        </div>
+        <div class="col s12 m6">
+            @Html.LabelFor(m => m.Nombre)
+            @Html.PasswordFor(m => m.Nombre)
+            @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "red-text" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            @Html.LabelFor(m => m.Direccion1)
+            @Html.PasswordFor(m => m.Direccion1)
+        </div>
+        <div class="col s12 m6">
+            @Html.LabelFor(m => m.Direccion2)
+            @Html.PasswordFor(m => m.Direccion2)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m4">
+            @Html.LabelFor(m => m.Telefono)
+            @Html.PasswordFor(m => m.Telefono)
+        </div>
+        <div class="col s12 m4">
+            @Html.LabelFor(m => m.Celular)
+            @Html.PasswordFor(m => m.Celular)
+        </div>
+        <div class="col s12 m4">
+            @Html.LabelFor(m => m.Fax)
+            @Html.PasswordFor(m => m.Fax)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            @Html.LabelFor(m => m.Email)
+            @Html.PasswordFor(m => m.Email)
+        </div>
+        <div class="col s6 m3">
+            <label>
+                <input id="EnviarCorreo" type="checkbox" />
+                <span>Enviar Correo?</span>
+            </label>
+        </div>
+        <div class="col s6 m3">
+            <label>
+                <input id="EsPrestador" type="checkbox" />
+                <span>Es Prestador?</span>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12">
+            @Html.LabelFor(m => m.Ciudad)
+            @Html.PasswordFor(m => m.Ciudad)
+        </div>
+    </div>
+    <div class="row">
+        <fieldset>
+            <legend>Tipo de vinculo</legend>
+            @{foreach (var item in Enum.GetValues(typeof(WebUI.Models.Enumeradores.EnumTipoVinculo)))
+            {
+                <label>
+                    <input id="EsPrestador_@item.GetHashCode()" type="checkbox" />
+                    <span class="esPrestadorC">@item.ToString()</span>
+                </label>
+            }
+            }
+        </fieldset>
+    </div>
+    
+    @*<section>
+        @Html.ValidationSummary("", new { @class="text-red"})
+    </section>*@
+    <input type="submit" value="Register" class="btn btn-blu white-text" />
+
+}
